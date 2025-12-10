@@ -86,7 +86,7 @@ Backbone extraction using high-salience skeletons and edge betweenness
 
 If you use this repository, please cite the accompanying paper:
 
-Röelle Bosa, M. H., Bürker, M., & Ramos Pomar, G. (2025). Social Network and Text Analysis of Debates in the House of Commons of the 58th Parliament of the United Kingdom. DTU Compute.
+Roëlle Bos, M. H., Bürker, M., & Ramos Pomar, G. (2025). Social Network and Text Analysis of Debates in the House of Commons of the 58th Parliament of the United Kingdom. DTU Compute.
 
 ## 📬 Contact
 
