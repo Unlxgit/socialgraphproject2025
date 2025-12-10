@@ -1,0 +1,354 @@
+\documentclass[9pt,twocolumn,twoside]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+\usepackage{lipsum}
+\usepackage{float}
+\usepackage{booktabs}  
+\usepackage{subcaption}
+\usepackage{graphicx}
+
+\articletype{\parbox{\linewidth}{APPLIED MATHEMATICS\\SOCIAL SCIENCES}}
+
+
+\templatetype{pnasresearcharticle}
+
+
+\begin{document}
+
+
+\title{Template for preparing your research report submission to PNAS using Overleaf}
+% https://www.pnas.org/doi/epdf/10.1073/pnas.2410227122
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[a,1]{Meike Hanneke Roëlle Bos}
+\author[b,1,2]{Max Bürkner}
+\author[a,1]{Gerard Ramos Pomar}
+
+\affil[a]{Department of Applied Mathematics and Computer Science, Technical University of Denmark, 2800 Kgs. Lyngby, Denmark}
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Lead author last name}
+
+
+% Please add a significance statement to explain the relevance of your work
+\significancestatement{Authors must submit a significance statement between 50 and 120 words in length about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the significance statement is to explain the relevance of the work in broad context to a broad readership. If submitting a Direct Submission, please add a significance statement to explain the relevance of your work. Brief Reports do not publish with a significance statement, and should be omitted for this article type.}
+
+% Please include corresponding author, author contribution and author declaration information
+\authorcontributions{
+M.B. and G.R.P. sourced the data; 
+M.B. visualized the network; 
+M.H.R.B. analyzed the communities; 
+G.R.P. performed the sentiment analysis; 
+M.H.R.B., M.B., and G.R.P. wrote the paper.
+}
+\authordeclaration{The authors declare no competing interest.}
+\equalauthors{\textsuperscript{1}M.H.R.B., M.B., and G.R.P. contributed equally to this work.}
+\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: s252890@dtu.dk}
+
+% At least three keywords are required at submission. Please provide three to five keywords, separated by the pipe symbol.
+\keywords{parliamentary debates $|$ network analysis $|$ community detection $|$ sentiment analysis}
+
+\begin{abstract}
+Please provide an abstract of no more than 250 words in a single paragraph. Abstracts should explain to the general reader the major contributions of the article. References in the abstract must be cited in full within the abstract itself and cited in the text. \lipsum[100]
+\end{abstract}
+
+\dates{This manuscript was compiled on \today}
+\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
+
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+\Firstpage
+
+%The \Firstpage command is used to format the first page text column size. The same size will be maintained for subsequent paragraph until the \Endparasplit or \Parasplit command is encountered.
+
+Recent history has witnessed a series of drastic political events with significant societal repercussions, including the COVID-19 pandemic, the Taliban takeover of Afghanistan, and the Russian invasion of Ukraine. While it is clear that such events have affected public sentiment across European states, a systematic, empirical understanding of how these shocks are reflected in political discourse remains limited. One of the most direct windows into societal sentiment is the deliberative behavior of elected parliaments, whose members are tasked with representing the views and concerns of their constituents. This raises the question: can the effects of major political events be measured within parliamentary discourse, and if so, how?
+
+To address this question, we focus on the UK House of Commons, which is reelected every four years. All debates and proceedings within the House are publicly available, providing an ideal platform for analyzing changes in sentiment, interaction patterns, and community structures over time. Parliamentary debates not only reveal individual members’ attitudes but also illuminate the dynamics of interaction between members and the formation of political communities, offering a rich dataset for quantitative analysis.\\
+
+\begin{itemize}
+    \item We should write something here about the llm and how our network is built.
+    \item And that we look at trends over the sessions.
+    \item And that we grouped the parties in 6.
+    \item See if your introduction (emphasis on trends) aligns with all analyses. For community, not so much on trends, but if this is the case for sentiment, its fine i think?
+\end{itemize}
+
+
+
+\Endparasplit 
+
+
+\section*{Results}
+
+
+
+\subsection*{Network Analysis}
+The analyzed UK parliament interactions network consists of 665 unique Members of Parliament (MPs) form the total of 674 MP who were in office during the 58th parliament of the United Kingdom. In total there where 30863 unique interactions between two MP with a total of 86039 interactions. The graph has a density of 0.13, meaning that only 13\% of the possible edges are present. This is a relatively high density considering that for that each member on average interacted with 93 other MPs. While the degree distribution is poisson distributed more interestingly the edge weight is power law degree distributed as seen in Figure x. This indicates that while most MPs interact with only a moderate number of colleagues, a small subset engages in disproportionately frequent exchanges. Such highly active MPs often occupy prominent parliamentary roles or serve as focal points in debates, thereby generating heavy-tailed interaction patterns. Moreover, the coexistence of a near-Poisson degree distribution with a power-law edge-weight distribution suggests that interaction intensity, rather than network connectivity alone, drives much of the structural heterogeneity in the network. This dual characteristic points toward a system where broad participation is coupled with localized hubs of concentrated activity, reflecting both the collaborative and adversarial dynamics inherent to parliamentary proceedings. 
+
+The network also exhibits a negative degree assortativity of –0.18, indicating that highly connected MPs tend to interact disproportionately with less connected colleagues rather than with other high-degree individuals. This disassortative pattern is characteristic of hierarchical or role-structured networks, where central figures act as communication hubs linking to a wider periphery. In the parliamentary context, this likely reflects the institutional organization of government: ministers, shadow ministers, and committee chairs engage frequently with a broad set of backbenchers, junior MPs, or domain-specific specialists who possess fewer overall interactions. As a result, influential MPs form bridges that connect otherwise sparsely linked members, reinforcing the asymmetry between core political actors and the wider parliamentary body. This structural signature aligns with the observed power-law distribution of edge weights, further highlighting the concentration of interaction intensity around key political roles.
+
+
+% make the two graphics float up the top
+\begin{figure*}
+\begin{subfigure}[t]{.5\textwidth}
+  \includegraphics[width=\linewidth]{Network Analysis/node degree distribution.png}
+  \caption{A subfigure}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}[t]{.5\textwidth}
+  \includegraphics[width=\linewidth]{Network Analysis/backbone.png}
+  \caption{A subfigure}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{A figure with two subfigures}
+\label{fig:test}
+\end{figure*}
+
+When analyzing centrality measures to identify key parliamentary figures, several MPs emerge as particularly influential within the network. Rt Hon Boris Johnson, for instance, ranks highest across multiple centrality metrics, including in-degree, out-degree, degree, and betweenness centrality caused by his prominent role as Prime Minister during much of the 58th Parliament. Other key figures include his successor Rt Hon Rishi Sunak MP, Rt Hon Matt Hancock Secretary of State for Health and Social Care during the COVID-19 pandemic and Sir Lindsay Hoyle MP, the Speaker of the House of Commons. One outlier is Jim Shannon MP from the Democratic Unionist Party, who also ranks highly across all centrality measures, though not holding a major governmental position. This may be caused by his extraoranary engagement in debates without a motion (Add a citation).
+
+Finally when analysing the backbone of the network using the high salience skeleton method \textbf{[source?]} together with edge betweenness centrality, we find that the backbone says within a hairball like structure. This indicates that there are no clear pathways of interactions dominating the parliamentary debates, but rather a complex web of exchanges where many MPs play crucial roles in connecting different parts of the network. Nontheless one more key figure is revealed, Elizabeth "Liz" Truss, who served as Secretary of State for International Trade and President of the Board of Trade before briefly becoming Prime Minister. Her prominence in the backbone analysis suggests that she was a pivotal connector within parliamentary discussions, likely due to her involvement in high-profile trade negotiations and international relations during a turbulent period for UK politics. Additionally, it becomes apparent that the Conservative party members dominate the backbone structure, reflecting their central role in government and policymaking during this parliamentary term.
+
+
+
+\subsection*{Community Detection} 
+When looking into interactions within a parliamntary system, it is expected that Members of Parliament (MPs) do not confine their interactions to their own party. Instead they routinely engage with members of other parties. Politics, after all is built on debate, negotiation, and cross-party exchange. The network structure of interactions within the house of commons clearly reflects this reality.
+
+When calculating the modularity score of the network, partitioned by the six parties, all scores - those of the sessions and of the full electorial period - turn out to be negative. Regardless of shifts in political context or parliamentary composition, MPs continue to interact broadly across party lines. 
+
+Community detection was, however, highly relevant within this network. The overall results are displayed in table \ref{tab:Louvain}. Using the Louvain algorithm \textbf{[source?]}, approximately twelve communities were identified in all networks, most of which contain between 60 and 130 nodes. These nodes represent MPs who interact more frequently with one another. Two of the detected communities, however, consist of only a few nodes and are therefore excluded from the subsequent community-level analysis.
+
+\begin{table}[H]
+\caption{Louvain community structure and modularity scores across full dataset and parliamentary sessions}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lccccc}
+\toprule
+ & Full & Session 1 & Session 2 & Session 3 & Session 4 \\
+\midrule
+Communities & 12 & 12 & 12 & 13 & 11 \\
+Modularity  & 0.182 & 0.267 & 0.289 & 0.278 & 0.343 \\
+\bottomrule
+\end{tabular}
+\label{tab:Louvain}
+}
+\end{table}
+
+The modularity scores of the detected communities range from 0.182 to 0.343. These values are moderate and indicate that connections within communities are only slightly denser than would be expected in a random network. Given the nature of the UK House of Commons as a highly interactive and debate-driven environment, this pattern is expected. MPs from different communities frequently engage with one another; the communities simply identify groups that interact somewhat more often than others.\\
+
+Within these detected communities, the distribution of party membership also reveals meaningful patterns. The Conservative MPs have a stable share in all Louvain detected communities, which matches their global share. This pattern is not surprising: the Conservatives won the 2019 general election \textbf{source} and formed the government, meaning they held the largest number of seats and were structurally embedded across a wide range of debates. Government parties typically participate broadly and consistently in parliamentary discussions, which naturally result in a stable representation across interaction-based communities. 
+
+Other parties, however, reveal that there may be more underlying the community structure. Smaller parties show stronger deviations in their community share, sometimes being strongly overrepresented and sometimes strongly underrepresented. This suggests that certain communities may be shaped around specific topics or areas of expertise. Smaller parties often specialise in particular policy domains, and when debates align with these domains, their MPs become disproportionately active. MPs with relevant expertise are more likely to speak on these topics and to engage with other MPs who share similar expertise. The distribution of party shares within communities therefore indicates that interactions may be driven by topic-focused or expertise-driven clustering.\\
+
+To inspect expertise or dominant topics within the parties and communities, wordclouds are created based on an overuse score. This score is computed by comparing how frequently a word appears in a party or community to how often the same word appears in the rest of the dataset. The idea is that words which are relatively more common within one group signal specialised topics or expertise. For each word, two relative frequencies are calculated: the probability of the word occurring in the target group ($p_c$), and the probability of the word occurring in all other groups combined ($p_r$). The overuse score is the ratio of these two probabilities.
+
+{\small
+\begin{align*}
+\begin{aligned}
+p_c &= \frac{\text{count of word in target}}{\text{total words in target}}, \\
+p_r &= \frac{\text{count of word in rest}}{\text{total words in rest}}, \\
+\end{aligned}
+\numberthis \label{eqn:overuse}
+\end{align*}
+}
+
+A high score means that the word is used much more frequently within the target group than outside it, highlighting distinctive terminology. To maintain statistical reliability, only words that appear at least 500 times in the full corpus are included. Words that do not occur outside the target group are excluded because their ratio cannot be computed. These word clouds showed distinct differences in the topics discussed, shown in table \ref{tab:topics}  
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Community} & \textbf{Inferred Topic} \\
+\midrule
+11 & Education \& Covid \\
+10 & Defence \& Geopolitics \\
+9 & Local Transport Issues \\
+8 & Housing Regulation \\
+7 & Israel Gaza Conflict \\
+6 & Environment \& Fisheries \\
+3 & Law \& Regulation \\
+2 & Northern Ireland Politics \\
+1 & Wales \& Justice \\
+0 & Immigration \& Borders \\
+\bottomrule
+\end{tabular}
+\caption{Inferred dominant topics per community based on wordclouds.}
+\label{tab:topics}
+\end{table}
+
+These results can, in some cases, be directly linked back to the party representation within each community. For instance, the Liberal Democrats are strongly present in Community 8, whose wordcloud indicates a dominant focus on housing regulation. Community 7, where debates appear heavily centered on foreign affairs and specifically the Israel–Gaza conflict, shows a clear overrepresentation of the Scottish National Party. This aligns with the fact that the SNP frequently engages in humanitarian and foreign-policy discussions \citep{SNP}.
+
+Furthermore, the parties grouped under “Other” align strongly with Community 2, which focuses on Northern Ireland politics. This pattern points to the presence and influence of the Northern Irish party within this cluster.
+
+Overall, this topic–community analysis clearly highlights that communities form around areas of expertise: MPs moderately cluster around the substantive issues they specialise in and actively debate.
+
+% \begin{figure}[tbp]
+%     \centering
+    
+%     \begin{subfigure}[t]{1\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Wordclouds Communities/community_0.png}
+%         \caption{Community 0}
+%         \label{fig:WC0}
+%     \end{subfigure}
+
+%     \vspace{1em}
+
+%     \begin{subfigure}[t]{1\linewidth}
+%         \centering
+%         \includegraphics[width=\linewidth]{Wordclouds Communities/community_1.png}
+%         \caption{Community 1}
+%         \label{fig:WC1}
+%     \end{subfigure}
+
+%     \caption{Wordclouds of Community 0 and Community 1}
+%     \label{fig:WC01}
+% \end{figure}
+
+
+\subsection*{Sentiment Analysis}
+Understanding not only who interacts within Parliament but also how emotional expression is conveyed is key to capturing the broader dynamics of political debate. Sentiment analysis is applied to the interactions in the 58th UK Parliament to explore this dimension.
+
+
+% extreme sentiment politicians
+Firstly, the analysis focuses on whether emotional tone spreads through interactions. If positive or negative rhetoric influences the behaviour of others, MPs who consistently speak with highly positive or highly negative sentiment are expected to affect the tone of those who engage with them. The individuals with the most extreme sentiment profiles are identified, and the sentiment of their interlocutors is examined to determine how it shifts when interacting with them compared to the overall average.
+
+%% bla bla bla
+
+
+% trends in avg sentiment
+In addition, changes in the emotional climate of Parliament are examined over time to determine whether major disruptions, such as the COVID-19 pandemic or the Russian invasion of Ukraine, leave measurable traces in parliamentary discourse. By tracking sentiment across the 58th Parliament, potential shifts linked to these exceptional events could potentially be identified. 
+
+%% bla bla bla
+
+
+
+
+\section*{Discussion}
+
+Here we can write long text about our cool group. 
+
+\subsection*{We are the best}
+
+We are undeniably cool, not just because we do impressive things, but because we do them with effortless style. We bring energy, curiosity, and a bit of mischief into everything we touch, turning even ordinary moments into something memorable. Whether we’re tackling challenges, sharing ideas, or simply enjoying the ride, we manage to mix competence with charm in a way that makes others stop and take notice. Our vibe is bold but relaxed, clever but never arrogant, and always authentically us. Together, we create the kind of atmosphere people want to be around—confident, creative, and unmistakably cool in every moment.
+
+
+
+\matmethods{
+
+\subsection*{Empirical Data and Preprocessing}
+All data were obtained from the UK Parliament House of Commons via the publicly available Hansard API \cite{hansard_api_2025}. We specifically targeted debates from the 58th electoral period, corresponding to the period from December 2019 to May 2024. This resulted in a total of 22,585 documented debates within the given timeframe. Subsequently, debates spanning multiple days, which were separated into sub-debates and were therefore difficult to trace, were removed, resulting in a final dataset of 14,719 debates.
+
+As the focus of our analysis was to identify behavior and changes in interactions within the UK Parliament House of Commons, it was necessary to identify and filter pairs of interacting speakers. To achieve this, we used the most recent GPT-OSS-Safeguard:20B large language model from OpenAI \cite{gpt_oss_safeguard_2025, openai_gpt_oss_120b_2025}, with the temperature set to 0 to ensure reproducibility. This reasoning model is specialized in following policies to classify text. In our case, it was provided with the following three criteria to define an interaction: a contribution was considered interacting if the second speaker, anywhere in their utterance: (1) directly addressed the first speaker, (2) built upon a point made by the first speaker, or (3) asked a question referring to the first speaker's contribution. The model was prompted to provide a binary yes/no response.
+
+Qualitative analysis indicated that this model outperformed other open-source LLMs, as it applied reasoning to determine whether the contributions of two given speakers could be classified as interacting. The GPT-OSS-Safeguard:20B was run on an RTX 4070 Ti SUPER for approximately 100 hours, with an 8k-token context window, to classify interactions in 6.001 randomly sampled debates, which formed the basis of our analysis
+
+}
+
+\showmatmethods{} % Display the Materials and Methods section
+
+\dataavail{All scripts used for data retrieval, preprocessing, and interaction extraction, as well as the processed interaction datasets, are publicly available on GitHub at . Raw debate data were obtained from the UK Parliament Hansard API .}
+
+
+
+
+
+\acknow{We thank Sune Lehmann for this fun course and his ironic approach to the lectures.}
+
+\showacknow{} % Display the acknowledgments section
+
+
+
+
+\bibsplit[3]
+%Use \bibsplit to split the references from the body of the text. Value "[3]" represents the number of reference in the left column (Note: Please avoid single column figures & tables on this page.)
+
+% Bibliography
+%\bibliography{references}
+\bibliography{pnas-sample}
+
+
+
+\end{document}
+
+
+\begin{comment}
+   \begin{SCfigure*}[\sidecaptionrelwidth][t!]
+    \centering
+    \includegraphics[width=11.4cm,height=11.4cm]{frog.pdf}
+    \caption{This legend would be placed at the side of the figure, rather than below it.}\label{fig:side}
+    \end{SCfigure*} 
+
+    \begin{figure*}[bt!]
+    \begin{align*}
+    (x+y)^3&=(x+y)(x+y)^2\\
+           &=(x+y)(x^2+2xy+y^2) \numberthis \label{eqn:example2} \\
+           &=x^3+3x^2y+3xy^3+x^3.
+    \end{align*}
+    \end{figure*}
+
+    \begin{align*}
+    (x+y)^3&=(x+y)(x+y)^2\\
+           &=(x+y)(x^2+2xy+y^2) \numberthis \label{eqn:example1} \\
+           &=x^3+3x^2y+3xy^3+x^3.
+    \end{align*}
+
+    \begin{figure}%[tbhp]
+    \centering
+    \includegraphics[width=.8\linewidth]{frog.pdf}
+    \caption{Placeholder image of a frog with a long example legend to show justification setting.}
+    \label{fig:frog1}
+    \end{figure}
+    
+    
+    \begin{figure*}[t!]
+    \centering
+    \includegraphics[scale=0.6]{frog}
+    \caption{Placeholder image of a frog with a long example legend to show justification setting.}
+    \label{fig:frog2}
+    \end{figure*}
+    
+    
+    \begin{table}[t!]
+    \centering
+    \caption{Comparison of the fitted potential energy surfaces and ab initio benchmark electronic energy calculations}
+    \begin{tabular}{lrrr}
+    Species & CBS & CV & G3 \\
+    \midrule
+    1. Acetaldehyde & 0.0 & 0.0 & 0.0 \\
+    2. Vinyl alcohol & 9.1 & 9.6 & 13.5 \\
+    3. Hydroxyethylidene & 50.8 & 51.2 & 54.0\\
+    \bottomrule
+    \end{tabular}
+    
+    \addtabletext{nomenclature for the TSs refers to the numbered species in the table.}
+    \end{table}
+    
+    
+    \begin{table*}[t!]
+    \centering
+    \caption{Impact on Emission Behaviors by Socioeconomic Status}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccc@{}}
+    & (1) & (2) & (3) & (4) & (5) \\
+    \midrule
+     & \multicolumn{2}{c}{City-level} & Firm-level & \multicolumn{2}{c}{City-level} \\
+    Dep. Var.: & \multicolumn{2}{c}{COD Emission (1,000 tons)} & COD Emission (ton) & Firm Entry & Firm Exit \\
+    \multicolumn{6}{c}{Panel A: Population Share without College Education} \\
+    Share of Below College $\times$ Post$_{05}$ & 0.165*** & 0.292** & 0.358*** & 0.623** & 0.280 \\
+     & (0.026) & (0.119) & (0.106) & (0.266) & (0.487) \\
+    Share of Below College & -0.208 & & & & \\
+     & (0.141) & & & & \\
+    Post$_{05}$ & -16.426*** & & & & \\
+     & (2.873) & & & & \\
+    \multicolumn{6}{c}{Panel B: Population Share without High School Education} \\
+    Share of Below HS $\times$ Post$_{05}$ & 0.099*** & 0.218** & 0.232** & 0.453** & 0.089 \\
+     & (0.005) & (0.090) & (0.079) & (0.195) & (0.333) \\
+    Share of Below HS & -0.213* & & & & \\
+     & (0.100) & & & & \\
+    Post$_{05}$ & -9.465*** & & & & \\
+     & (0.564) & & & & \\
+    \bottomrule
+    \end{tabular*}
+    
+    \addtabletext{*** P $<$ 0.01, ** P $<$ 0.05, * P $<$ 0.1}
+    \end{table*}
+    
+\end{comment}

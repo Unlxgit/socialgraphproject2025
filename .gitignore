@@ -1,0 +1,14 @@
+src/data/
+src/data_tmp/
+src/interactions/
+src/interactions_2/
+src/uk_parliament_interactions_graph_data.json
+src/uk_parliament_interactions_graph_data_V2.json
+src/uk_parliament_interactions_graph_data_V3.json
+src/uk_parliament_interactions_graph_data_V4.json
+src/data.json
+*.zip
+.venv/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
