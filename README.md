@@ -6,7 +6,7 @@ The project accompanies the paper:
 
 Social Network and Text Analysis of Debates in the House of Commons of the 58th Parliament of the United Kingdom
 
-Meike Hanneke Röelle Bosa¹, Max Bürkner¹², Gerard Ramos Pomar¹
+Meike Hanneke Roëlle Bos¹, Max Bürkner¹², Gerard Ramos Pomar¹
 
 Compiled December 10, 2025
 
